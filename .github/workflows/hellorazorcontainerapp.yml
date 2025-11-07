@@ -23,14 +23,14 @@ jobs:
     - name: Log in to ACR
       uses: docker/login-action@v3
       with:
-        registry: gclynch.azurecr.io
+        registry: gclynch
         username: ${{secrets.AZURE_REGISTRY_USERNAME}}
         password: ${{secrets.AZURE_REGISTRY_PASSWORD}}
     - name: Build and deploy Container App
       uses: azure/container-apps-deploy-action@v1
       with:
         appSourcePath: ${{ github.workspace }}/src
-        acrName: gclynch.azurecr.io
+        acrName: gclynch
         containerAppName: ${{env.CONTAINER_APP_CONTAINER_NAME}}
         resourceGroup: ${{env.CONTAINER_APP_RESOURCE_GROUP_NAME}}
  
