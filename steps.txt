@@ -1,0 +1,16 @@
+run Docker Desktop
+
+gclynch.azurecr.io
+az login
+az acr repository list --name gclynch --output table				- list images in azure cr "gclynch"
+
+need to tag image before pushing to ACR
+e.g. gclynch/helloworldrazor as gclynch.azurecr.io/gclynch/helloworldrazor and then push
+
+docker tag gclynch/helloworldrazor gclynch.azurecr.io/gclynch/helloworldrazor
+docker push gclynch.azurecr.io/gclynch/helloworldrazor
+
+go to Azure portal, gclynch registry, settings/access keys to see password
+
+az acr credential show --name gclynch
+az container create --resource-group GCResourceGroup1 --name hellocontainer --image gclynch.azurecr.io/gclynch/helloworldrazor --dns-name-label gclynchhelloci --os-type Linux --cpu 1 --memory 1 --ports 80 --registry-password zX9x+I6SHHjKrevBkiFYifUV816Wg8z2BPtoH2Zd2R+ACRCbTmTp
