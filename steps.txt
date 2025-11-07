@@ -28,7 +28,7 @@ az ad sp create-for-rbac --name "hellorazorcredentials" --role contributor --sco
 
 {
   "clientId": "3e7c2aaf-086a-4835-a97a-bd4480680efd",
-  "clientSecret": "iYW8Q~PHgME4kNz7MxGYTZBVUFx_zCxKOsHsub2J",
+  "clientSecret": .......
   "subscriptionId": "9234f307-03ae-4084-9ca7-adc34a78e100",
   "tenantId": "766317cb-e948-4e5f-8cec-dabc8e2fd5da",
   "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
