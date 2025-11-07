@@ -24,11 +24,11 @@ or do it in VS
 
 in the cloud shell in the portal:
 
-az ad sp create-for-rbac --name "hellorazorcredentials" --role contributor --scopes /subscriptions/9234f307-03ae-4084-9ca7-adc34a78e100/resourceGroups/GCResourceGroup1 --sdk-auth
+az ad sp create-for-rbac --name "hellorazorcredentials" --role contributor --scopes /subscriptions/9234f307-03ae-4084-9ca7-adc34a78e100/resourceGroups/GCResourceGroup1 --json-auth --output json
 
 {
   "clientId": "3e7c2aaf-086a-4835-a97a-bd4480680efd",
-  "clientSecret": "IBD8Q~P3Qgh5zbEUwiKPiLSoa0eS8j-r9_EZvcJ5",
+  "clientSecret": "iYW8Q~PHgME4kNz7MxGYTZBVUFx_zCxKOsHsub2J",
   "subscriptionId": "9234f307-03ae-4084-9ca7-adc34a78e100",
   "tenantId": "766317cb-e948-4e5f-8cec-dabc8e2fd5da",
   "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
