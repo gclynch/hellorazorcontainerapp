@@ -1,16 +1,40 @@
-run Docker Desktop
+In VS create Razor pages app and add container support (Dockerfile)
+Build and run on Docker desktop (for release not debug, otherwise dev tag on image)
 
-gclynch.azurecr.io
+
+docker tag hellorazorcontainerapp:latest gclynch.azurecr.io/gclynch/hellorazorcontainerapp
+
 az login
-az acr repository list --name gclynch --output table				- list images in azure cr "gclynch"
+az acr login -n gclynch
+docker push gclynch.azurecr.io/gclynch/hellorazorcontainerapp
+az acr repository list --name gclynch --output table
 
-need to tag image before pushing to ACR
-e.g. gclynch/helloworldrazor as gclynch.azurecr.io/gclynch/helloworldrazor and then push
 
-docker tag gclynch/helloworldrazor gclynch.azurecr.io/gclynch/helloworldrazor
-docker push gclynch.azurecr.io/gclynch/helloworldrazor
 
-go to Azure portal, gclynch registry, settings/access keys to see password
+in portal create the container app:
+pick gclynch.acr.io
+pick image  hellorazorcontainerapp
+auth type: managed identity
+ingress - traffic from anywhere
 
-az acr credential show --name gclynch
-az container create --resource-group GCResourceGroup1 --name hellocontainer --image gclynch.azurecr.io/gclynch/helloworldrazor --dns-name-label gclynchhelloci --os-type Linux --cpu 1 --memory 1 --ports 80 --registry-password zX9x+I6SHHjKrevBkiFYifUV816Wg8z2BPtoH2Zd2R+ACRCbTmTp
+or do it in VS
+- can publish image to container registry
+- can publish app to container app
+
+
+in the cloud shell in the portal:
+
+az ad sp create-for-rbac --name "hellorazorcredentials" --role contributor --scopes /subscriptions/9234f307-03ae-4084-9ca7-adc34a78e100/resourceGroups/GCResourceGroup1 --sdk-auth
+
+{
+  "clientId": "3e7c2aaf-086a-4835-a97a-bd4480680efd",
+  "clientSecret": "IBD8Q~P3Qgh5zbEUwiKPiLSoa0eS8j-r9_EZvcJ5",
+  "subscriptionId": "9234f307-03ae-4084-9ca7-adc34a78e100",
+  "tenantId": "766317cb-e948-4e5f-8cec-dabc8e2fd5da",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
