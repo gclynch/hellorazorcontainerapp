@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  CONTAINER_APP_NAME: hellorazorcontainerapp
+  CONTAINER_APP_NAME: gclynch/hellorazorcontainerapp
   CONTAINER_REGISTRY_LOGIN_SERVER: gclynch.azurecr.io
   DOCKER_FILE_PATH: HelloRazorContainerApp/Dockerfile
   AZURE_CONTAINER_REGISTRY: gclynch
