@@ -11,6 +11,7 @@ env:
   DOCKER_FILE_PATH: HelloRazorContainerApp/Dockerfile
   PROJECT_NAME_FOR_DOCKER: hellorazorcontainerapp
   AZURE_CONTAINER_REGISTRY: gclynch
+  RESOURCE_GROUP: GCResourceGroup1
 
 jobs:
   deploy:
@@ -48,11 +49,10 @@ jobs:
         tags: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}
         file: HelloRazorContainerApp/Dockerfile
 
-    - name: Build and deploy Container App
+    - name: Deploy to Azure Container Apps
       uses: azure/container-apps-deploy-action@v1
       with:
-        appSourcePath: ${{ github.workspace }}/src
-        acrName: gclynch
-        containerAppName: ${{env.CONTAINER_APP_CONTAINER_NAME}}
-        resourceGroup: ${{env.CONTAINER_APP_RESOURCE_GROUP_NAME}}
+        imageToDeploy: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_APP_NAME }}
+        resourceGroup: ${{ env.RESOURCE_GROUP }}
+        containerAppName: ${{ env.CONTAINER_APP_NAME }}
  
